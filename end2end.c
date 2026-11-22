@@ -111,7 +111,8 @@ int main(int argc, char **argv)
 
         double now = now_ns();
         if (now - last >= 1e9 && g_cnt > 0) {
-            double mean = (double)g_sum / g_cnt * c2n - 11.35;
+            /* 11.35 ns: 一对 rdtsc 夹空内核开销按每轮包数摊薄（计时校准，非算法开销） */
+    double mean = (double)g_sum / g_cnt * c2n - 11.35;
             printf("端到端 均值%6.1f p99%4d | 解析 均值%5.1f p99%4d | tx 均值%6.1f p99%4d | 批均%.1f\n",
                    mean,               pct(g_hist, 99),
                    (double)g_sparse / g_cnt * c2n, pct(g_hparse, 99),
