@@ -1,3 +1,4 @@
+## 2026-11-23 复现: parse20 定案改为 parse20_clean.c —— full 绝对 10.57 ns / 净 8.89-8.90 ns (0.445 ns/字段, 112.4 Mops, 空内核 1.67, 六次连跑稳定); 旧记录 10.35 (v4) 源码为 attic 快照不可编译, 保留为历史并标注已被取代; 起点 14.90 同属快照, 优化幅度需重测朴素基线后再报。
 ## 2026-11-20 数字2：parse20 10.35 ns/条(parse20_v4.c，扣空内核，0.52 ns/字段)；fwd_reflector.c 转发零丢包(19.3万pps/两轮各200万包/rx=tx/drop 0) [定案]
 ## 约定（2026-11-21 起）
 - 对外数字必须：先写 bench_notes → commit → git tag -a <名字> -m "<口径原文>"；被问出处用 git show <tag>:bench_notes.md
