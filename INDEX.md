@@ -16,13 +16,12 @@
 | VInt 缓冲验证 | vint_mask11.c | 32KB/256KB/16MB 三档 |
 | CTP 584B 解析 | parse_ctp_seg.cpp | 8.05 ns 净 |
 | 空轮询 | poll_bench2.c | 6.18 ns |
-| 20 字段解析 | parse20_v10.c | 10.35 ns（待核版本） |
+| 20 字段解析 | parse20_clean.c | 净 8.89 ns（绝对 10.57，扣空内核，0.445 ns/字段） |
 | DPDK 工具 | line_rate.c / rx_bench.c / tx_bench.c / fuse_bench.c / end2end.c / rdtsc_bench.c | 见 RESULTS.md |
 
 ## 已判负（本地保留，不在仓库）
-vint_fast3..7.c、vint_mask2..9/12.c、vint_spec.c、vint_batch.c、vint_simd.c、v4lut.c、parse20_v6..v9.c、parse_ctp_v4/full/seg2..4/tick
+vint_fast3..7.c、vint_mask2..9/12.c、vint_spec.c、vint_batch.c、vint_simd.c、v4lut.c、parse20_v6..v10.c、parse_ctp_v4/full/seg2..4/tick
 
 ## 未决
 - 端到端 250 ns 的定义
-- parse20 10.35 的源文件版本
 - SMDP2.0 域清单（进行中）

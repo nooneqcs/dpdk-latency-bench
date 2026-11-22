@@ -11,7 +11,7 @@
 - 禁止“只在对话里给结论，不落盘”
 
 ## 3. 跟踪范围（16 个 C/C++）
-- 今晚定案：vint_fast2.c、vint_mask10.c、vint_mask11.c、parse_ctp_seg.cpp、poll_bench2.c、parse20_v10.c
+- 今晚定案：vint_fast2.c、vint_mask10.c、vint_mask11.c、parse_ctp_seg.cpp、poll_bench2.c、parse20_clean.c
 - 11-22 及之前（不动）：line_rate.c、rx_bench.c、tx_bench.c、fuse_bench.c、end2end.c、rdtsc_bench.c、poll_bench.c、parse20_simd.c、parse90_simd.c、parse_ctp_tick.cpp
 - 本地保留不跟踪：所有实验变体（.gitignore 中显式列出）
 
@@ -29,6 +29,5 @@
 
 ## 6. 未决
 - 端到端 250 ns 的起点/终点
-- parse20 10.35 出自哪个源文件
 - SMDP2.0 项目：域清单进行中
 
