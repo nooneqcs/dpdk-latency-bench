@@ -14,6 +14,7 @@
 - 今晚定案：vint_fast2.c、vint_mask10.c、vint_mask11.c、parse_ctp_seg.cpp、poll_bench2.c、parse20_clean.c
 - 11-22 及之前（不动）：line_rate.c、rx_bench.c、tx_bench.c、fuse_bench.c、end2end.c、rdtsc_bench.c、poll_bench.c、parse20_simd.c、parse90_simd.c、parse_ctp_tick.cpp
 - 本地保留不跟踪：所有实验变体（.gitignore 中显式列出）
+- 实验存档（也跟踪，供追溯，注意 parse20_v10.c 编译不过）：parse20_v10.c、v4lut.c
 
 ## 4. 目录与命名
 - 文档放仓库根目录：PROGRESS-YYYY-MM-DD.md、ARCHIVE-YYYY-MM-DD.md

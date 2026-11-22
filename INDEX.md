@@ -19,7 +19,7 @@
 | 20 字段解析 | parse20_clean.c | 净 8.89 ns（绝对 10.57，扣空内核，0.445 ns/字段） |
 | DPDK 工具 | line_rate.c / rx_bench.c / tx_bench.c / fuse_bench.c / end2end.c / rdtsc_bench.c | 见 RESULTS.md |
 
-## 已判负（本地保留，不在仓库）
+## 已判负（本地保留；parse20_v10.c、v4lut.c 已入库存档）
 vint_fast3..7.c、vint_mask2..9/12.c、vint_spec.c、vint_batch.c、vint_simd.c、v4lut.c、parse20_v6..v10.c、parse_ctp_v4/full/seg2..4/tick
 
 ## 未决
