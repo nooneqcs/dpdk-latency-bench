@@ -38,3 +38,25 @@
 - 注意：程序打印的 5.51 分母是 64B 线速 1488095，对 1518B 无意义，禁引用
 - 环满未入环计数每轮约 3.19 亿次，说明软件提交远快于线速
 状态：定案
+
+## 2026-11-23 Ubuntu 首次两轮开平（SimNow au2612）
+- 环境：Ubuntu（此前均 Windows），MD 30012 / TD 30002，账户 101600
+- 开平1：开 ref=2 tradeid=16903 @779.12；平今 ref=3 tradeid=17944 @778.04
+- 开平2：开 ref=4 tradeid=18320 @778.34；平今 ref=5 tradeid=18528 @778.20
+- 四单均 st=0 全部成交并终态
+- 延迟观测：tick->order 293763 ns（n=1，含线程唤醒）；order->rtn 387ms/170ms（SimNow 公网+模拟撮合，不可当性能）；rtn->trade 同回调约 0
+- 修复 bug：QRY_ACC 回报后未给 avail_ 赋值导致风控误判“可用不足”，改为 std::stod(e.tag) 后通过
+状态：闭环定案；LatLog 待插
+
+### 2026-11-23 CTP demo 平仓 复核查实（r 刷新）
+- r 刷新持仓：positions rows=0 → 当前无持仓，2手多单已平坐实
+- 对账：cab=10 local=10，柜台有本地无=0/本地有柜台无=0，量修正=0 状态修正=0；trades refs=7
+- account avail=49,994,269.88
+状态：平仓 定案
+
+### 2026-11-23 LatLog order->rtn 修复 终验
+- mark_rtn：首条RTN→t_rtn(order->rtn)，终态→t_rtn2(rtn->trade)
+- 终验 n=2：order->rtn 30ms(p50)/341ms(max)，rtn->trade 50us/24ms；均首条ack量级，无秒级
+- 铁证：ref15 买开788.6挂单未成交、首条ack 51ms（挂近7分钟仍51ms）；ref18 买开789挂单首条ack 137ms 后st=3
+- 口径：SimNow公网不对外；tick->order 手敲无意义不引用
+状态：order->rtn 已修 定案
