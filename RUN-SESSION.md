@@ -3,7 +3,6 @@
 ```
 Script started on 2026-11-22 01:37:33+08:00 [COMMAND="./run_all.sh fast" TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="100" LINES="25"]
 === rdtsc ===
-[sudo: authenticate] Password: ****    
 EAL: Detected CPU lcores: 4
 EAL: Detected NUMA nodes: 1
 EAL: Detected shared linkage of DPDK
