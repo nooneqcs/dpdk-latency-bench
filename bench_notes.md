@@ -21,3 +21,12 @@
 - 环境记录（2026-11-21）：i5-7400(4C4T, base3.0G, no_turbo=1) / 内核 7.0.0-43-generic(Ubuntu25.11) / cmdline 无 isolcpus·nohz_full·intel_iommu=on(IOMMU生效) / governor=powersave / 大页 1024x2MB / DPDK 25.11 / i210[8086:1533] 绑 vfio-pci 1000M 全双工，对端 Realtek USB GbE A0:CE:C8:E4:FC:74 / TSC 3.00GHz invariant / 未做核隔离与关中断故 p999 不可控。governor 验证：切 performance 后 tx 各档差异<2%、rx p50/p90/p99 差异<2%（142.67/52.75/35.75/26.94/22.70 与 173.33/209.67/494.33），turbo 禁下满载即 base，既有数据有效。状态：定案
 - 64B 线速复核（2026-11-21，三轮各 5 秒）：opackets 7440677/7440680/7440679 -> 1488135/1488136/1488136 pps，理论 1488095，即 100.00% 线速（64 字节帧：PKT_LEN=46 + 14 以太头 + 4 FCS）。三轮差 <1 pps。未入环约 2.8 亿次，证明瓶颈在网卡不在 CPU（单核提交能力远超 1GbE 线速）。注：opackets 为 i210 发送计数，不代表对端接收。旧记录 1420485 pps(95.46%) 口径不同（疑含处理开销或包长不同），以本次为准。状态：定案
 - runner 完成（2026-11-22）：~/rq-bench/run_all.sh，用法 ./run_all.sh [fast|full]，输出存 runall-时间戳/ 目录。fast 模式覆盖 rdtsc/fuse/parse90/parsetp/poll/tx/line 七项（均不需外部流量）；full 额外含 rx 与 end2end 两项（需笔记本发包，脚本会停下等回车）。同一脚本两次运行结果与手测三方一致，差异均 <1%，可复现性确认。已知小瑕疵：汇总段 tx 仅显示末两档（tail -4）。状态：定案
+
+## 2026-11-23 发送侧定案（i210 link_up=1 speed=1000 duplex=1）
+- tx_burst 每包 p50：1包 141.67 / 4包 51.58-51.92 / 8包 35.00-36.79 / 16包 26.90 / 32包 22.33 ns；五批累计 73200 包、oerrors=0
+- 环满持续发送 10s：1.415 Mpps（1415.3 万包），每包 706.5 ns；软件 22.4 ns 备包 vs 端口 672 ns/包，差 30 倍
+- 主动回收版：cleanup 调用 3.26 亿次、回收 748 万包、返回码 0，吞吐 1.421 Mpps（提升 0.4，噪声内）→ 瓶颈在端口/PMD 非环回收
+- 修正：igb tx_done_cleanup 不推进 head 的说法是 link-down 假象
+- 作废：2.96（曾标 SPSC 单次入队）、36、170=36+130、163、58、0.83/6.02/3、cacheline 伪共享倍数
+- 口径：处理段 250 ns 含发送提交，不与 141.7 相加
+状态：定案
