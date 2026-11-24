@@ -12,7 +12,7 @@ governor=powersave / 大页 1024×2MB / DPDK 25.11 / i210 [8086:1533] 绑 vfio-p
 - rdtsc 空内核：25.9 ns（25.89–25.90）；各段扣净后再比较。
 - 原则：分段值不叠加。
 
-## 2. VInt 解码〔细节待核 RESULTS-VInt.md〕
+## 2. VInt 解码（明细见 smdp-gateway: docs/RESULTS-VInt.md）
 - 标量 vint_fast2：4.48 ticks/VInt（约 1.49 ns）；六条改进路线均更慢 → 不可压。
 - 批量 vint_mask10：1.04 ticks（16MB 流式）/ 0.98（32KB 热），0.93–0.99 tick/byte ≈ 3 GB/s。
 - 关键：续字节 bit7 恒 0 ⇒ 起点掩码 ~(movemask(load(p-1)))；求和式解码不需 pshufb。
@@ -101,4 +101,4 @@ rx 172/487、解析净 8.89·绝对 10.57·0.445、融合 2.89 vs 4.09 省 29%�
 CTP 9.5s、风控四道、LatLog 数十 μs。
 
 ---
-〔未纳入〕RESULTS-VInt.md 完整明细、RULES/MEMO/INDEX/RUN-SESSION/README——不在手，需并入时把这些文件内容补到对应节。
+- 〔说明〕RESULTS-VInt.md 已迁至 smdp-gateway；RULES/MEMO/INDEX/RUN-SESSION 已移出公开仓（本地存档）。
