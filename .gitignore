@@ -14,3 +14,6 @@ parse20_v[6-9].c
 parse_ctp_v4.cpp
 parse_ctp_full.cpp
 parse_ctp_seg[234].cpp
+MEMO.md
+PROGRESS-2026-11-23.md
+RUN-SESSION.md
