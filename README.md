@@ -19,7 +19,7 @@
 ./run_all.sh full    # 额外含 rx / end2end，需要笔记本侧发流
 ```
 
-结果写入 `runall-<时间戳>/`。参考输出见 [`docs/RESULTS-DPDK.md`](docs/RESULTS-DPDK.md)，对外口径汇总见 [`SUMMARY.md`](SUMMARY.md)。
+结果写入 `runall-<时间戳>/`。参考输出见 [`docs/RESULTS-DPDK.md`](docs/RESULTS-DPDK.md)。
 
 ## 测量口径
 
